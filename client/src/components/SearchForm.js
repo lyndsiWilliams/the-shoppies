@@ -11,7 +11,9 @@ const SearchForm = props => {
     <div>
       <button onClick={props.getMovies}>Get movies</button>
       {props.movies && !props.isFetching && props.movies.map(movie => (
-        <div key={movie.imdbID}>{movie.Title}</div>
+        <div key={movie.imdbID}>
+          <p>Title: {movie.Title} | Year: {movie.Year} <button>Nominate</button></p>
+        </div>
       ))}
     </div>
   );
