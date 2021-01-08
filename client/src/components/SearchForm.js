@@ -17,9 +17,7 @@ const SearchForm = props => {
   const handleSubmit = event => {
     event.preventDefault();
     props.getMovies(query);
-    setQuery({
-      title: ''
-    });
+    setQuery({ title: '' });
   };
 
   const handleChanges = event => {
