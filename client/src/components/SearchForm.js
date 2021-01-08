@@ -38,9 +38,10 @@ const SearchForm = props => {
 
   const deleteNomination = movie => {
     const newArr = [...nominations];
-    newArr.pop(movie);
+    const movieIndex = nominations.indexOf(movie);
+    newArr.splice(movieIndex, 1);
     setNominations(newArr);
-  }
+  };
 
   return (
     <div>
