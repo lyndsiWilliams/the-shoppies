@@ -7,11 +7,11 @@ export const FETCH_MOVIES_SUCCESS = "FETCH_MOVIES_SUCCESS";
 export const FETCH_MOVIES_FAILURE = "FETCH_MOVIES_FAILURE";
 
 
-export const getMovies = () => dispatch => {
+export const getMovies = query => dispatch => {
   dispatch({ type: FETCH_MOVIES_START });
-  axios.get("http://www.omdbapi.com/?s=inception&apikey=7232becf")
+  axios.get(`http://www.omdbapi.com/?s=${query}&apikey=7232becf&type=movie`)
     .then(response => {
-      console.log(response.data);
+      console.log("This is the query being passed: ", query);
       dispatch({ type: FETCH_MOVIES_SUCCESS, payload: response.data.Search });
     })
     .catch(error => {
