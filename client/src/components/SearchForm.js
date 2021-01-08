@@ -1,5 +1,5 @@
 // React
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
 // Actions
 import { getMovies } from '../redux/actions';
@@ -13,10 +13,6 @@ const SearchForm = props => {
   const [query, setQuery] = useState({ title: '' });
   const [nominations, setNominations] = useState([]);
   console.log("nominations", nominations);
-
-  // useEffect(() => {
-  //   props.getMovies(query);
-  // }, [query])
 
   const handleSubmit = event => {
     event.preventDefault();
