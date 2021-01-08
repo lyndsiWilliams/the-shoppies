@@ -10,7 +10,7 @@ export const FETCH_MOVIES_FAILURE = "FETCH_MOVIES_FAILURE";
 export const getMovies = query => dispatch => {
   console.log("This is the query being passed: ", query);
   dispatch({ type: FETCH_MOVIES_START });
-  axios.get(`http://www.omdbapi.com/?s=${query.title}&apikey=7232becf&type=movie`)
+  axios.get(`https://www.omdbapi.com/?s=${query.title}&apikey=7232becf&type=movie`)
     .then(response => {
       dispatch({ type: FETCH_MOVIES_SUCCESS, payload: response.data.Search });
     })
