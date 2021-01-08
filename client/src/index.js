@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 // Reducer
-import { moviesReducer } from './redux/reducers/moviesReducer';
+import reducer from './redux/reducers';
 // Styling
 import './index.css';
 // Components
@@ -16,7 +16,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 
-const store = createStore(moviesReducer, applyMiddleware(thunk, logger));
+const store = createStore(reducer, applyMiddleware(thunk, logger));
+// console.log(store.getState())
 
 ReactDOM.render(
   <Provider store={store}>
