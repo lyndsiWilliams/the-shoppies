@@ -1,5 +1,16 @@
+// React
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+// Actions
+import { getNominations } from '../redux/actions';
+
 const Nominations = props => {
   console.log("Props in Nominations: ", props);
+
+  useEffect(() => {
+    props.getNominations();
+  }, [props.nominations])
+
   return (
     <div>
       <h2>Nominations</h2>
@@ -11,5 +22,12 @@ const Nominations = props => {
   );
 };
 
+const mapStateToProps = state => ({
+  nominations: state.nominationsReducer.nominations
+});
 
-export default Nominations;
+
+export default connect (
+  mapStateToProps,
+  { getNominations }
+)(Nominations);
