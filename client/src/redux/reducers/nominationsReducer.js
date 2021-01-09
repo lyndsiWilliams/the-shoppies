@@ -20,7 +20,7 @@ export function nominationsReducer(state=initialState, action) {
     case DELETE_NOMINATION:
       return {
         ...state,
-        nominations: state.nominations.filter(nomination => nomination.id !== action.payload)
+        nominations: state.nominations.filter(nomination => nomination !== action.payload)
       }
     default:
       return state;

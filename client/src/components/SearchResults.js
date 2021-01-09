@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
 // Actions
-import { postNomination } from '../redux/actions';
+import { postNomination, deleteNomination } from '../redux/actions';
 
 const SearchResults = props => {
   console.log("props in SearchResults: ", props)
@@ -21,15 +21,12 @@ const SearchResults = props => {
     console.log("nominations", nominations);
   };
 
-  const deleteNomination = movie => {
-    if(nominations.includes(movie)) {
-      const newArr = [...nominations];
-      const movieIndex = nominations.indexOf(movie);
-      newArr.splice(movieIndex, 1);
-      setNominations(newArr);
+  const deleteNomination = (movie) => {
+    if(props.nominations.includes(movie)) {
+      props.deleteNomination(movie);
     } else {
-      alert("This movie is not in your nomination list.")
-    }
+      alert("This movie is not in your nomination list.");
+    };
   };
 
   return (
@@ -52,5 +49,5 @@ const mapStateToProps = state => ({
 
 export default connect (
   mapStateToProps,
-  { postNomination }
+  { postNomination, deleteNomination }
 )(SearchResults);
