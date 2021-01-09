@@ -2,12 +2,12 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
 // Actions
-import { postNomination, deleteNomination } from '../redux/actions';
+import { getNominations, postNomination, deleteNomination } from '../redux/actions';
 
 const SearchResults = props => {
   console.log("props in SearchResults: ", props)
-  
-  const [nominations, setNominations] = useState([]);
+
+  const [disButton, setDisButton] = useState(false);
 
   const addNomination = nominatedMovie => {
     console.log("Nominated movie: ", nominatedMovie);
@@ -17,8 +17,8 @@ const SearchResults = props => {
       alert("You can only nominate 5 movies.")
     } else {
       props.postNomination(nominatedMovie);
-    }
-    console.log("nominations", nominations);
+      handleDisable(nominatedMovie);
+    };
   };
 
   const deleteNomination = (movie) => {
@@ -29,13 +29,21 @@ const SearchResults = props => {
     };
   };
 
+  // NOT WORKING YET
+  const handleDisable = nominatedMovie => {
+    props.getNominations();
+    if(props.nominations.includes(nominatedMovie)) {
+      setDisButton(true)
+    }
+  }
+
   return (
     props.movies && !props.isFetching && props.movies.map(movie => (
       <div key={movie.imdbID}>
         <p>
           Title: {movie.Title} | Year: {movie.Year}
         </p>
-        <button onClick={() => addNomination(movie.Title)}>Nominate</button>
+        <button disabled={disButton} onClick={() => addNomination(movie.Title)}>Nominate</button>
         <button onClick={() => deleteNomination(movie.Title)}>Remove</button>
       </div>
     ))
@@ -49,5 +57,5 @@ const mapStateToProps = state => ({
 
 export default connect (
   mapStateToProps,
-  { postNomination, deleteNomination }
+  { getNominations, postNomination, deleteNomination }
 )(SearchResults);

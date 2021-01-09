@@ -25,13 +25,6 @@ const SearchForm = props => {
     setQuery({ ...query, [event.target.name]: event.target.value });
   };
 
-  const deleteNomination = movie => {
-    const newArr = [...nominations];
-    const movieIndex = nominations.indexOf(movie);
-    newArr.splice(movieIndex, 1);
-    setNominations(newArr);
-  };
-
   return (
     <div className="search-form">
       <h1>The Shoppies</h1>
