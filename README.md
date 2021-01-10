@@ -1,7 +1,7 @@
 # The Shoppies: Movie awards for entrepreneurs
-- Web Developer Intern Challenge - Summer 2021
+Web Developer Intern Challenge - Summer 2021
 
-### Resources used:
+## Resources used:
 - React
 - Redux
 - Axios
