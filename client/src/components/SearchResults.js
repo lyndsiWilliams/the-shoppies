@@ -1,5 +1,5 @@
 // React
-import { useState } from 'react';
+// import { useState } from 'react';
 import { connect } from 'react-redux';
 // Actions
 import { getNominations, postNomination, deleteNomination } from '../redux/actions';
@@ -7,7 +7,7 @@ import { getNominations, postNomination, deleteNomination } from '../redux/actio
 const SearchResults = props => {
   console.log("props in SearchResults: ", props)
 
-  const [disButton, setDisButton] = useState(false);
+  // const [disButton, setDisButton] = useState(false);
 
   const addNomination = (nominatedMovie) => {
     props.getNominations();
@@ -82,7 +82,7 @@ const SearchResults = props => {
         <p>
           Title: {movie.Title} | Year: {movie.Year}
         </p>
-        <button disabled={disButton} onClick={() => handleClick(movie.Title, movie.imdbID)}>Nominate</button>
+        <button disabled={false} onClick={() => handleClick(movie.Title, movie.imdbID)}>Nominate</button>
         <button onClick={() => deleteNomination(movie.imdbID)}>Remove</button>
       </div>
     ))
