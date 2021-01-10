@@ -4,16 +4,14 @@ import { connect } from 'react-redux';
 // Actions
 import { getMovies } from '../redux/actions';
 // Components
-import Nominations from './Nominations';
 import SearchResults from './SearchResults';
+import Nominations from './Nominations';
 
 
 const SearchForm = props => {
   console.log("Props in SearchForm:", props);
 
   const [query, setQuery] = useState({ title: '' });
-  const [nominations, setNominations] = useState([]);
-  console.log("nominations", nominations);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -26,20 +24,24 @@ const SearchForm = props => {
   };
 
   return (
-    <div className="search-form">
-      <h1>The Shoppies</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="title"
-          placeholder="Search for a movie by title..."
-          onChange={handleChanges}
-          value={query.title}
-        />
-        <button type="submit">Search</button>
-      </form>
-      <SearchResults movies={props.movies} />
-      <Nominations />
+    <div className="App">
+      <div className="search-form">
+        <h1>The Shoppies</h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="title"
+            placeholder="Search for a movie by title..."
+            onChange={handleChanges}
+            value={query.title}
+          />
+          <button type="submit">Search</button>
+        </form>
+      </div>
+      <div className="results-noms">
+        <SearchResults movies={props.movies} />
+        <Nominations />
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 // React
-import { useState } from 'react';
+// import { useState } from 'react';
 import { connect } from 'react-redux';
 // Actions
 import { getNominations, postNomination, deleteNomination } from '../redux/actions';
@@ -7,10 +7,12 @@ import { getNominations, postNomination, deleteNomination } from '../redux/actio
 const SearchResults = props => {
   console.log("props in SearchResults: ", props)
 
-  const [disButton, setDisButton] = useState(false);
+  // const [disButton, setDisButton] = useState(false);
 
-  const addNomination = nominatedMovie => {
+  const addNomination = (nominatedMovie) => {
+    props.getNominations();
     console.log("Nominated movie: ", nominatedMovie);
+    console.log("props.nominations: ", props);
     if(props.nominations.includes(nominatedMovie)) {
       alert("This movie has already been nominated!");
     } else if(props.nominations.length === 5) {
@@ -21,37 +23,78 @@ const SearchResults = props => {
     };
   };
 
-  const deleteNomination = (movie) => {
-    if(props.nominations.includes(movie)) {
-      props.deleteNomination(movie);
-    } else {
-      alert("This movie is not in your nomination list.");
-    };
+  const deleteNomination = id => {
+    // console.log("props.nominations", props.nominations)
+    // if(props.nominations.includes(id)) {
+      props.deleteNomination(id);
+    // } else {
+    //   alert("This movie is not in your nomination list.");
+    // };
   };
 
   // NOT WORKING YET
   const handleDisable = nominatedMovie => {
     props.getNominations();
+    console.log(nominatedMovie)
     if(props.nominations.includes(nominatedMovie)) {
-      setDisButton(true)
+      // setDisButton(true)
     }
   }
 
+  const movieObj = Object.create({});
+
+  const movieMaker = (movie) => {
+    // console.log(movie)
+    movieObj.Poster = movie.Poster;
+    movieObj.Title = movie.Title;
+    movieObj.Type = movie.Type;
+    movieObj.Year = movie.Year;
+    movieObj.imdbID = movie.imdbID;
+    movieObj.nominated = false;
+    // console.log("movieObj", movieObj);
+  }
+
+  const newMovieList = props.movies.map(movie => movieMaker(movie))
+
+  // console.log("Array.from", Array.from(props.movies, movie => movieMaker(movie)))
+
+  console.log("newMovieList: ", newMovieList);
+
+  const nom = Object.create({});
+  
+  const nomMaker = (title, id) => {
+    nom.title = title;
+    nom.id = id;
+    nom.nominated = false;
+    console.log("nom in nomMaker: ", nom);
+  };
+
+  const handleClick = (title, id) => {
+    nomMaker(title, id);
+    nom.nominated = !nom.nominated;
+    console.log("nom in handleClick: ", nom);
+    addNomination(nom);
+  };
+
   return (
-    props.movies && !props.isFetching && props.movies.map(movie => (
-      <div key={movie.imdbID}>
-        <p>
-          Title: {movie.Title} | Year: {movie.Year}
-        </p>
-        <button disabled={disButton} onClick={() => addNomination(movie.Title)}>Nominate</button>
-        <button onClick={() => deleteNomination(movie.Title)}>Remove</button>
-      </div>
-    ))
+    <div className="results">
+      <h2>Search results</h2>
+      {props.movies.length < 1 ? <h4>Enter a movie in the search bar</h4> : null}
+      {props.movies && !props.isFetching && props.movies.map(movie => (
+        <div key={movie.imdbID}>
+          <p>
+            Title: {movie.Title} | Year: {movie.Year}
+          </p>
+          <button disabled={false} onClick={() => handleClick(movie.Title, movie.imdbID)}>Nominate</button>
+          <button onClick={() => deleteNomination(movie.imdbID)}>Remove</button>
+        </div>
+      ))}
+    </div>
   );
 };
 
 const mapStateToProps = state => ({
-  nominations: state.nominationsReducer.nominations
+  nominations: state.nominationsReducer.nominations,
 });
 
 
