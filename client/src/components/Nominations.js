@@ -7,9 +7,11 @@ import { getNominations } from '../redux/actions';
 const Nominations = props => {
   console.log("Props in Nominations: ", props);
 
+  const propNoms = props.nominations;
+
   useEffect(() => {
     props.getNominations();
-  }, [props.nominations])
+  }, [propNoms])
 
   return (
     <div>
