@@ -7,14 +7,15 @@ import { getNominations } from '../redux/actions';
 const Nominations = props => {
   console.log("Props in Nominations: ", props);
 
-  const propNoms = props.nominations;
+  const propNoms = [...props.nominations];
+  console.log("propNoms", propNoms)
 
   useEffect(() => {
     props.getNominations();
   }, [propNoms])
 
   return (
-    <div>
+    <div className="nominations">
       <h2>Nominations</h2>
       {props.nominations.length === 5 ? <h4>Your nominations are full!</h4> : <h4>Pick up to 5 nominations.</h4>}
       {props.nominations && props.nominations.map((nom) => (

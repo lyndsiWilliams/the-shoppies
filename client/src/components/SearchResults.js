@@ -77,15 +77,19 @@ const SearchResults = props => {
   };
 
   return (
-    props.movies && !props.isFetching && props.movies.map(movie => (
-      <div key={movie.imdbID}>
-        <p>
-          Title: {movie.Title} | Year: {movie.Year}
-        </p>
-        <button disabled={false} onClick={() => handleClick(movie.Title, movie.imdbID)}>Nominate</button>
-        <button onClick={() => deleteNomination(movie.imdbID)}>Remove</button>
-      </div>
-    ))
+    <div className="results">
+      <h2>Search results</h2>
+      {props.movies.length < 1 ? <h4>Enter a movie in the search bar</h4> : null}
+      {props.movies && !props.isFetching && props.movies.map(movie => (
+        <div key={movie.imdbID}>
+          <p>
+            Title: {movie.Title} | Year: {movie.Year}
+          </p>
+          <button disabled={false} onClick={() => handleClick(movie.Title, movie.imdbID)}>Nominate</button>
+          <button onClick={() => deleteNomination(movie.imdbID)}>Remove</button>
+        </div>
+      ))}
+    </div>
   );
 };
 
