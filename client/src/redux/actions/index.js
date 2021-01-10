@@ -35,6 +35,6 @@ export const postNomination = nomination => dispatch => {
   dispatch({ type: POST_NOMINATION, payload: nomination });
 };
 
-export const deleteNomination = nomination => dispatch => {
-  dispatch({ type: DELETE_NOMINATION, payload: nomination });
+export const deleteNomination = nominationID => dispatch => {
+  dispatch({ type: DELETE_NOMINATION, payload: nominationID });
 };

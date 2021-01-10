@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 // Actions
 import { getMovies } from '../redux/actions';
 // Components
-import Nominations from './Nominations';
 import SearchResults from './SearchResults';
 
 
@@ -12,8 +11,6 @@ const SearchForm = props => {
   console.log("Props in SearchForm:", props);
 
   const [query, setQuery] = useState({ title: '' });
-  const [nominations, setNominations] = useState([]);
-  console.log("nominations", nominations);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -39,7 +36,6 @@ const SearchForm = props => {
         <button type="submit">Search</button>
       </form>
       <SearchResults movies={props.movies} />
-      <Nominations />
     </div>
   );
 };

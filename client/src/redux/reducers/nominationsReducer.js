@@ -18,10 +18,10 @@ export function nominationsReducer(state=initialState, action) {
         nominations: state.nominations.concat(action.payload)
       };
     case DELETE_NOMINATION:
-      return {
+      return (console.log("action.payload", action.payload, "state", state.nominations),{
         ...state,
-        nominations: state.nominations.filter(nomination => nomination !== action.payload)
-      }
+        nominations: state.nominations.filter(nomination => nomination.id !== action.payload)
+      })
     default:
       return state;
   };
