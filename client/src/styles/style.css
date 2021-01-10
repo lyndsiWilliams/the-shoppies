@@ -13,8 +13,7 @@
 }
 
 .search-form form {
-  margin-top: -3.5%;
-  margin-bottom: 2%;
+  margin-bottom: 30px;
 }
 
 .results-noms {
@@ -56,6 +55,7 @@ body h1 {
   font-family: "Bebas Neue", cursive;
   font-size: 4em;
   color: #e50914;
+  margin: 20px;
 }
 
 body h2 {
