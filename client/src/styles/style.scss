@@ -1,4 +1,23 @@
+@import './variables';
 // Components
 @import './searchForm';
 @import './searchResults';
 @import './nominations';
+
+body {
+  font-family: $textFont;
+  background-color: $netflixGray;
+  color: $netflixWhite;
+
+  h1 {
+    font-family: $bigFont;
+    font-size: 4em;
+    color: $netflixRed;
+  }
+
+  h2 {
+    // font-family: $bigFont;
+    color: $netflixRed;
+    font-size: 1.75em;
+  }
+}

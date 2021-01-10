@@ -8,6 +8,15 @@
           flex-direction: column;
 }
 
+.search-form {
+  background-color: #080808;
+}
+
+.search-form form {
+  margin-top: -3.5%;
+  margin-bottom: 2%;
+}
+
 .results-noms {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -35,5 +44,22 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #141414;
+  color: #e0e0e0;
+}
+
+body h1 {
+  font-family: "Bebas Neue", cursive;
+  font-size: 4em;
+  color: #e50914;
+}
+
+body h2 {
+  color: #e50914;
+  font-size: 1.75em;
 }
 /*# sourceMappingURL=style.css.map */
