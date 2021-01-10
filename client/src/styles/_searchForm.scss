@@ -3,6 +3,14 @@
   flex-direction: column;
 }
 
+.search-form {
+  background-color: $netflixBlack;
+  form {
+    margin-top: -3.5%;
+    margin-bottom: 2%;
+  }
+}
+
 .results-noms {
   display: flex;
   justify-content: space-evenly;
