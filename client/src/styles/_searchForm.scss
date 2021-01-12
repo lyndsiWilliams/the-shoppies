@@ -3,8 +3,23 @@
   flex-direction: column;
 }
 
+@keyframes text-shadow-drop-br {
+  0% {
+    text-shadow: 0 0 0 rgba(224, 224, 224, 0);
+  }
+  100% {
+    text-shadow: 5px 5px 10px rgba(224, 224, 224, 0.35);
+  }
+}
+
 .search-form {
   background-color: $netflixBlack;
+
+  .text-shadow-drop-br {
+    -webkit-text-stroke: .1px black;
+    animation: text-shadow-drop-br 0.8s both;
+  }
+
   form {
     margin-bottom: 30px;
   }
