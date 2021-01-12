@@ -10,6 +10,7 @@ import logger from 'redux-logger';
 import reducer from './redux/reducers';
 // Styling
 import './index.css';
+import 'semantic-ui-css/semantic.min.css';
 // Components
 import App from './App';
 // Other

@@ -6,6 +6,7 @@ import { getMovies } from '../redux/actions';
 // Components
 import SearchResults from './SearchResults';
 import Nominations from './Nominations';
+import MovieCard from './MovieCard';
 
 
 const SearchForm = props => {
@@ -26,7 +27,7 @@ const SearchForm = props => {
   return (
     <div className="App">
       <div className="search-form">
-        <span className="text-shadow-drop-br"><h1>The Shoppies</h1></span>
+        <span className="title-text"><h1>The Shoppies</h1></span>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -41,6 +42,7 @@ const SearchForm = props => {
       <div className="results-noms">
         <SearchResults movies={props.movies} />
         <Nominations />
+        <MovieCard />
       </div>
     </div>
   );
