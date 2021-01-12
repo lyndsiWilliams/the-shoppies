@@ -1,32 +1,31 @@
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Image } from 'semantic-ui-react'
+import placeholder from './images/placeholder.jpg'
 
 
 const MovieCard = props => {
-  // const {
-  //   Poster,
-  //   Title,
-  //   Year,
-  //   imdbID,
-  //   nominated,
-  // } = props.movie;
+  const {
+    Poster,
+    Title,
+    Year,
+    // imdbID,
+    // nominated,
+  } = props.movie;
+
+  const handleImg = img => {
+    console.log(img)
+    if(img ==='N/A') {
+      img='/images/wireframe/image.png'
+    } else {
+      img=img
+    }
+  }
 
   return (
     <Card>
-      <Image src='/images/avatar/large/matthew.png' wrapped ui={false} />
+      <Image src={Poster == 'N/A' ? placeholder : Poster} wrapped ui={false} />
       <Card.Content>
-        <Card.Header>Matthew</Card.Header>
-        <Card.Meta>
-          <span className='date'>Joined in 2015</span>
-        </Card.Meta>
-        <Card.Description>
-          Matthew is a musician living in Nashville.
-        </Card.Description>
-      </Card.Content>
-      <Card.Content extra>
-        <a>
-          <Icon name='user' />
-          22 Friends
-        </a>
+        <Card.Header>{Title}</Card.Header>
+        <Card.Meta>{Year}</Card.Meta>
       </Card.Content>
     </Card>
   );
