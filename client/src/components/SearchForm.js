@@ -26,7 +26,7 @@ const SearchForm = props => {
   return (
     <div className="App">
       <div className="search-form">
-        <h1>The Shoppies</h1>
+        <span className="text-shadow-drop-br"><h1>The Shoppies</h1></span>
         <form onSubmit={handleSubmit}>
           <input
             type="text"

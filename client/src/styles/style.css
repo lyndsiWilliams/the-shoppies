@@ -8,6 +8,24 @@
           flex-direction: column;
 }
 
+@-webkit-keyframes text-shadow-drop-br {
+  0% {
+    text-shadow: 0 0 0 rgba(224, 224, 224, 0);
+  }
+  100% {
+    text-shadow: 5px 5px 10px rgba(224, 224, 224, 0.35);
+  }
+}
+
+@keyframes text-shadow-drop-br {
+  0% {
+    text-shadow: 0 0 0 rgba(224, 224, 224, 0);
+  }
+  100% {
+    text-shadow: 5px 5px 10px rgba(224, 224, 224, 0.35);
+  }
+}
+
 .search-form {
   background-color: #080808;
 }
