@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 // Actions
-import { getNominations, postNomination, deleteNomination } from '../redux/actions';
+import { getMovies, getNominations, postNomination, deleteNomination } from '../redux/actions';
 // Components
 import MovieCard from './MovieCard';
 
@@ -29,7 +29,7 @@ const SearchResults = props => {
       props.postNomination(nominatedMovie);
     };
     console.log("Nominated movie: ", nominatedMovie);
-    console.log("NOM in ADDNOMINATION ", nom);
+    // console.log("NOM in ADDNOMINATION ", nom);
   };
 
   const deleteNomination = id => {
@@ -55,46 +55,64 @@ const SearchResults = props => {
 
   console.log("newMovieList: ", newMovieList);
 
-  const nom = Object.create({});
+  // const nom = Object.create({});
   
-  const nomMaker = (title, id) => {
-    nom.title = title;
-    nom.id = id;
-    nom.nominated = true;
-    console.log("nom in nomMaker: ", nom);
-  };
+  // const nomMaker = (title, id) => {
+  //   nom.title = title;
+  //   nom.id = id;
+  //   nom.nominated = true;
+  //   console.log("nom in nomMaker: ", nom);
+  // };
 
   const handleClick = (title, id) => {
-    nomMaker(title, id);
-    addNomination(nom);
-    handleDisable(nom);
-    console.log("nom in handleClick: ", nom);
+    /*
+    - pass in the nominated movie
+      - by id? nom list will filter original movie list by id
+      - need to get whole object to pass in, not just id
+    - disable nomination button
+      - make movie.nominated = !movie.nominated
+    */
+    const nomination = getMovies().filter(nom => nom.id = id)
+    // nomMaker(title, id);
+    // addNomination(nom);
+    // handleDisable(nom);
+    console.log("nom in handleClick: ", nomination);
   };
 
   return (
-    <div className="results">
+    <div>
       <h2>Search results</h2>
-      {props.movies.length < 1 ? <h4>Enter a movie in the search bar</h4> : null}
-      {props.movies && !props.isFetching && newMovieList.map(movie => (
-        <MovieCard key={movie.imdbID} movie={movie} />
-        // <div key={movie.imdbID}>
-        //   <p>
-        //     Title: {movie.Title} | Year: {movie.Year}
-        //   </p>
-        //   <button disabled={movie.nominated ? true : false} onClick={() => handleClick(movie.Title, movie.imdbID)}>Nominate</button>
-        //   <button onClick={() => deleteNomination(movie.imdbID)}>Remove</button>
-        // </div>
-      ))}
+      <div className="results">
+        {props.movies.length < 1 ? <h4>Enter a movie in the search bar</h4> : null}
+        {props.movies && !props.isFetching && newMovieList.map(movie => (
+          <div key={movie.imdbID}>
+            <MovieCard movie={movie} />
+            <button onClick={() => handleClick(movie.imdbID)}>Nominate</button>
+            {/* PUT NOMINATE BUTTON HERE */}
+          </div>
+          
+          // <div key={movie.imdbID}>
+          //   <p>
+          //     Title: {movie.Title} | Year: {movie.Year}
+          //   </p>
+          //   <button disabled={movie.nominated ? true : false} onClick={() => handleClick(movie.Title, movie.imdbID)}>Nominate</button>
+          //   <button onClick={() => deleteNomination(movie.imdbID)}>Remove</button>
+          // </div>
+        ))}
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = state => ({
   nominations: state.nominationsReducer.nominations,
+  movies: state.moviesReducer.movies,
+  error: state.moviesReducer.error,
+  isFetching: state.moviesReducer.isFetching
 });
 
 
 export default connect (
   mapStateToProps,
-  { getNominations, postNomination, deleteNomination }
+  { getMovies, getNominations, postNomination, deleteNomination }
 )(SearchResults);
